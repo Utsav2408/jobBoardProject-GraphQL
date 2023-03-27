@@ -1,0 +1,26 @@
+# type Query {
+#     greeting: String
+# }
+
+type Query {
+    # here we are declaring an array of Jobs and ! signifies that no element inside array can be null
+    company(id: ID!): Company
+    job(id: ID!): Job
+    jobs: [Job!]
+}
+
+# Custom Object
+type Job {
+    # We can make a field necessary by adding !
+    id: ID!
+    title: String!
+    company: Company!
+    description: String
+}
+
+type Company {
+    id: ID!
+    name: String!
+    description: String
+    jobs: [Job!]
+}
