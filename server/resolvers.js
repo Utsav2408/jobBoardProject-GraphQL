@@ -26,6 +26,16 @@ export const resolvers = {
         jobs: () => Job.findAll()
     },
 
+    Mutation: {
+        createJob: (_root, { input }, { user }) => {
+            if (!user) {
+                throw new Error("Unauthorized");
+            }
+            
+            return Job.create({ ...input, companyId: user.companyId}) 
+        }
+    },
+
     Job: {
         company: (job) => {
             // console.log(' Resolving Job: ', job);
